@@ -18,6 +18,8 @@ public class Main {
         //conversion array to matrix
         char[][] matrix = new char[3][3];
         matrix = conversionArrToMatrix(field);
+        //printing matrix
+        //printTheMatrix(matrix);
         System.out.println(currentState(matrix));
     }
 
@@ -31,6 +33,21 @@ public class Main {
 
         System.out.println("---------");
 
+    }
+
+    private static void printTheMatrix(char[][] matrix){
+        //printing from matrix
+        System.out.println("---------");
+
+        for (int i = 0; i < 3; i++) {
+            System.out.print("| ");
+            for (int j = 0; j < 3; j++) {
+                System.out.print(matrix[i][j]+ " ");
+            }
+            System.out.print("|");
+            System.out.println();
+        }
+        System.out.println("---------");
     }
 
     private static String currentState(char[][] matrix) {
