@@ -7,31 +7,22 @@ public class Main {
         // write your code here
 
         Scanner scanner = new Scanner(System.in);
-
         char[] field = new char[9];
-
+        //asking for field input `
         System.out.print("Enter cells: ");
-        String cells = scanner.nextLine();
-        field = cells.toCharArray();
+        String cells = scanner.nextLine(); //reading as string
+        field = cells.toCharArray(); //parse string to array
 
+        //printing the field
         printTheField(field);
+        //conversion array to matrix
         char[][] matrix = new char[3][3];
-
         matrix = conversionArrToMatrix(field);
-        //test print
-/*        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                System.out.print(matrix[i][j]);
-
-            }
-            System.out.println();
-        }*/
         System.out.println(currentState(matrix));
-
-
     }
 
     private static void printTheField(char[] field) {
+        //simple printing from array
         System.out.println("---------");
 
         System.out.println("| " + field[0] + " " + field[1] + " " + field[2] + " |");
@@ -48,13 +39,12 @@ public class Main {
         int allX = 0;
         int allO = 0;
         int empty = 0;
-        //counting empty Xs and Os
+        //counting empty, Xs and Os
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 if (matrix[i][j] == '_') {
                     empty++;
                 }
-
                 if (matrix[i][j] == 'X') {
                     allX++;
                 }
@@ -94,7 +84,7 @@ public class Main {
             }
         }
 
-        //vertical? xd
+        //check if there are three X or Y vertical
         if(countX<3){
             for (int i = 0; i < 3; i++) {
                 countX = 0;
@@ -170,7 +160,6 @@ public class Main {
         for (int i = 0; i < 3; i++) {
             matrix[0][i] = field[i];
         }
-
         for (int i = 0; i < 3; i++) {
             matrix[1][i] = field[i + 3];
         }
