@@ -21,9 +21,10 @@ public class Main {
         FieldState currentState = new FieldState(matrix, field);
         //printing the field
         currentState.printTheField(field);
+        //printing the matrix
+        currentState.printTheMatrix(matrix);
 
-        //printing matrix
-        //printTheMatrix(matrix);
+
         System.out.println(currentState.currentState(matrix));
     }
 

@@ -49,7 +49,7 @@ public class FieldState {
         }
         System.out.println("---------");
     }
-    public static String currentState(char[][] matrix) {
+    public String currentState(char[][] matrix) {
         int countX = 0;
         int countO = 0;
         int allX = 0;
@@ -170,3 +170,4 @@ public class FieldState {
 
     }
 }
+
