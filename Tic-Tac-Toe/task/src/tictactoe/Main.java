@@ -9,7 +9,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         char[] field = new char[9];
 
-        //asking for field input `
+        //asking for field input
         System.out.print("Enter cells: ");
         String cells = scanner.nextLine(); //reading as string
         field = cells.toCharArray(); //parse string to array
@@ -20,12 +20,25 @@ public class Main {
 
         FieldState currentState = new FieldState(matrix, field);
         //printing the field
-        currentState.printTheField(field);
+        //currentState.printTheField();
         //printing the matrix
-        currentState.printTheMatrix(matrix);
+        currentState.printTheMatrix();
+
+        EnterTheSign enterTheSign = new EnterTheSign();
+        //Enter the coordinates:
+        //1. check the values
+        enterTheSign.setMatrix(currentState.getMatrix());
+
+        //2. if values valid enter the sandman xd and return new matrix
+        if(enterTheSign.validateTheCoordinates()){
+            enterTheSign.insertCell();
+            //3. set new matrix to FieldState object, print the matrix
+            currentState.setMatrix(enterTheSign.getMatrix());
+        }
 
 
-        System.out.println(currentState.currentState(matrix));
+        currentState.printTheMatrix();
+        //System.out.println(currentState.returnCurrentState());
     }
 
 
@@ -45,4 +58,6 @@ public class Main {
         return matrix;
     }
 
+
 }
+
