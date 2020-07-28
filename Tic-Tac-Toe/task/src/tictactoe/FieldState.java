@@ -6,15 +6,15 @@ public class FieldState {
     private int allX;
     private int allO;
     private int empty;
-    private char[][] matrix = new char[3][3];
-    private char[] field = new char[9];
+    private char[][] matrix;
+    private char[] field;
 
     public FieldState(char[][] matrix, char[] field) {
         this.matrix = matrix;
         this.field = field;
     }
 
-    //setters to change
+    //setters
     public void setMatrix(char[][] matrix) {
         this.matrix = matrix;
     }
@@ -23,7 +23,15 @@ public class FieldState {
         this.field = field;
     }
 
-    public static void printTheField(char[] field) {
+    public char[][] getMatrix() {
+        return matrix;
+    }
+
+    public char[] getField() {
+        return field;
+    }
+
+    public void printTheField() {
         //simple printing from array
         System.out.println("---------");
 
@@ -35,7 +43,7 @@ public class FieldState {
 
     }
 
-    public static void printTheMatrix(char[][] matrix){
+    public void printTheMatrix(){
         //printing from matrix
         System.out.println("---------");
 
@@ -49,12 +57,12 @@ public class FieldState {
         }
         System.out.println("---------");
     }
-    public String currentState(char[][] matrix) {
-        int countX = 0;
-        int countO = 0;
-        int allX = 0;
-        int allO = 0;
-        int empty = 0;
+    private void calculateCurrentState(char[][] matrix) {
+        countX = 0;
+        countO = 0;
+        allX = 0;
+        allO = 0;
+        empty = 0;
         //counting empty, Xs and Os
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -147,6 +155,12 @@ public class FieldState {
             }
         }
 
+    }
+
+    public String returnCurrentState()
+    {
+        //first calculate
+        calculateCurrentState(this.matrix);
 
         if (countX < 3 && countO < 3 && empty > 0 && (Math.abs(allO-allX) <2)) {
             //"Game not finished" - when no side has a three in a row but the field has empty cells;
@@ -166,8 +180,6 @@ public class FieldState {
         } else {
             return "Impossible";
         }
-
-
     }
 }
 
