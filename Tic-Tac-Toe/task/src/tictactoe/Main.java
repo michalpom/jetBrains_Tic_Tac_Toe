@@ -6,39 +6,47 @@ public class Main {
     public static void main(String[] args) {
         // write your code here
 
-        Scanner scanner = new Scanner(System.in);
-        char[] field = new char[9];
-
-        //asking for field input
-        System.out.print("Enter cells: ");
-        String cells = scanner.nextLine(); //reading as string
-        field = cells.toCharArray(); //parse string to array
-
-        //conversion array to matrix
+        //new game loop for stage 5.
         char[][] matrix = new char[3][3];
-        matrix = conversionArrToMatrix(field);
+        //empty field
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                matrix[i][j] = '_';
+            }
 
-        FieldState currentState = new FieldState(matrix, field);
-        //printing the field
-        //currentState.printTheField();
-        //printing the matrix
+        }
+        FieldState currentState = new FieldState(matrix);
+
         currentState.printTheMatrix();
-
         EnterTheSign enterTheSign = new EnterTheSign();
-        //Enter the coordinates:
-        //1. check the values
+        //setting start field
         enterTheSign.setMatrix(currentState.getMatrix());
 
-        //2. if values valid enter the sandman xd and return new matrix
-        if(enterTheSign.validateTheCoordinates()){
-            enterTheSign.insertCell();
-            //3. set new matrix to FieldState object, print the matrix
-            currentState.setMatrix(enterTheSign.getMatrix());
+        //Enter the coordinates:
+        //if values valid enter them to matrix and return new matrix
+        boolean gameFinished = false;
+        int whoseTurn = 0;
+
+        while (!gameFinished) {
+            //x or o move
+            if (enterTheSign.validateTheCoordinates()) {
+                enterTheSign.insertCell(whoseTurn);
+                currentState.setMatrix(enterTheSign.getMatrix());
+                if (whoseTurn == 0) {
+                    whoseTurn = 1;
+                } else {
+                    whoseTurn = 0;
+                }
+            }
+            currentState.printTheMatrix();
+
+            if (currentState.returnCurrentState().equals("Draw") || currentState.returnCurrentState().equals("O wins")
+                    || currentState.returnCurrentState().equals("X wins")) {
+                System.out.println(currentState.returnCurrentState());
+                gameFinished = true;
+            }
+
         }
-
-
-        currentState.printTheMatrix();
-        //System.out.println(currentState.returnCurrentState());
     }
 
 
