@@ -13,6 +13,9 @@ public class FieldState {
         this.matrix = matrix;
         this.field = field;
     }
+    public FieldState(char[][] matrix) {
+        this.matrix = matrix;
+    }
 
     //setters
     public void setMatrix(char[][] matrix) {
