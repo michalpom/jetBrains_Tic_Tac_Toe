@@ -65,4 +65,17 @@ public class EnterTheSign {
         //entering value to a cell
         this.matrix[3 - this.y][this.x - 1] = 'X';
     }
+    //overloaded method
+    public void insertCell(int whoseTurn){
+        //entering value to a cell
+        switch (whoseTurn){
+            case 0:
+                this.matrix[3 - this.y][this.x - 1] = 'X';
+                break;
+            case 1:
+                this.matrix[3 - this.y][this.x - 1] = 'O';
+                break;
+        }
+
+    }
 }
